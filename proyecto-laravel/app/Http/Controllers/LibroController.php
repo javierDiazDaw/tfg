@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Libro;
-use PDF;
+
 
 class LibroController extends Controller
 {
@@ -100,24 +100,63 @@ class LibroController extends Controller
         return redirect()->action([LibroController::class, 'index']);
     }
 
-
-    public function PDFtablaCompleta(){
-        $data = [
-            'libros' => Libro::all()
-        ];
-           
-        $pdf = PDF::loadView('PDFTablaCompletaView', $data);
-     
-        return $pdf->download('TablaCompletaView.pdf');
-    }
-
-    public function PDFDetalle($isbn){
-        $data = [
-            'libro' => $this->libros->obtenerUnLibro($isbn)
-        ];
-           
-        $pdf = PDF::loadView('PDFDetalleView', $data);
-     
-        return $pdf->download('DetalleView.pdf');
-    }
 }
+
+/* <?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Incidencia;
+use PDF;
+
+class IncidenciaController extends Controller
+{
+    protected $incidencias;
+
+    public function __construct(Incidencia $incidencias)
+    {
+        $this->incidencias = $incidencias;
+    }
+    
+    public function index()
+    {
+        $incidencias = $this->incidencias->obtenerIncidencias();
+        return view('mostrarIncidenciasView', ['incidencia' => $incidencia]);
+    }
+
+    
+    public function create()
+    {
+        return view('crearIncidenciaView');
+    }
+
+    
+    public function store(Request $request)
+    {
+        $incidencia = new Incidencia ($request->all());
+        $incidencia->save();
+        return redirect()->action([IncidenciaController::class, 'index']);
+    }
+
+
+    
+    public function update(Request $request, $idIncidencia)
+    {
+        $incidencia = Incidencia::find($idIncidencia);
+        $incidencia->fill($request->all());
+        $incidencia->save();
+        return redirect()->action([IncidenciaController::class, 'index']);
+    }
+
+    
+    public function destroy($id)
+    {
+        $incidencia = Incidencia::find($id);
+        $incidencia->delete();
+        return redirect()->action([IncidenciaController::class, 'index']);
+    }
+
+}
+
+ */
