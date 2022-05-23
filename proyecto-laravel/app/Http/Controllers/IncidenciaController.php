@@ -18,7 +18,7 @@ class IncidenciaController extends Controller
     public function index()
     {
         $incidencias = $this->incidencias->obtenerIncidencias();
-        return view('mostrarIncidenciasView', ['incidencia' => $incidencia]);
+        return view('mostrarIncidenciasView', ['incidencias' => $incidencias]);
     }
 
     

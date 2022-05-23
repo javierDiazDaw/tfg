@@ -7,6 +7,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Usuario;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,7 +34,36 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $idUsuario = Usuario::obtenerUsuarioCorreo($request->input('email'));
+
+        session()->put('idUsuario',$idUsuario);
+
+        session()->put('usuario', Usuario::find($idUsuario[0]->idUsuario));
+
         return redirect()->intended(RouteServiceProvider::HOME);
+        
+    }
+
+    /**
+     * Handle an incoming authentication request.
+     *
+     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeII(LoginRequest $request)
+    {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        $idUsuario = Usuario::obtenerUsuarioCorreo($request->input('email'));
+
+        session()->put('idUsuario',$idUsuario);
+
+        session()->put('usuario', Usuario::find($idUsuario[0]->idUsuario));
+
+        return redirect()->intended(RouteServiceProvider::HOME);
+        
     }
 
     /**
@@ -49,6 +80,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
+       
         return redirect('/');
     }
 }

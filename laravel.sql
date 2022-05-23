@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-04-2022 a las 03:25:05
--- Versión del servidor: 8.0.28-0ubuntu0.20.04.3
+-- Tiempo de generación: 23-05-2022 a las 22:39:48
+-- Versión del servidor: 8.0.29-0ubuntu0.20.04.3
 -- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -248,19 +248,6 @@ INSERT INTO `peticiones` (`NombreApellidos`, `Email`, `Titulo`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `prestamos`
---
-
-CREATE TABLE `prestamos` (
-  `Id` int NOT NULL,
-  `ISBN` char(13) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `FechaInicio` date NOT NULL,
-  `FechaFin` char(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -280,7 +267,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'javier', 'javier.diaz.roman.al@iespoligonosur.org', NULL, '$2y$10$UEwkGMzRx3sYQU8tD2rqOur9jT/mdKtuuZOZIRfyA/K0/lMhUkVcq', NULL, '2022-03-06 16:01:37', '2022-03-06 16:01:37');
+(1, 'javier', 'javier.diaz.roman.al@iespoligonosur.org', NULL, '$2y$10$UEwkGMzRx3sYQU8tD2rqOur9jT/mdKtuuZOZIRfyA/K0/lMhUkVcq', NULL, '2022-03-06 16:01:37', '2022-03-06 16:01:37'),
+(2, 'jesus', 'jesusemail@gmail.com', NULL, '$2y$10$2tuNkV7W70T0sXNXYD4nG.yYvmQuZ8i4.Yo85afwYbfEKYqcergra', NULL, '2022-05-18 07:48:50', '2022-05-18 07:48:50');
 
 -- --------------------------------------------------------
 
@@ -306,6 +294,33 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellidos`, `email`, `dni`, `telefono`, `notificacionEmail`, `contrasenia`, `rol`, `validacion`) VALUES
+(1, 'javier', 'diaz roman', 'javier.diaz.roman.al@iespoligonosur.org', '49028792z', 637913632, 1, 'ks+8RVbHh25OVvLJmBHm4d+oF6hXyKk0cJ4QkVALQhhjjBPlxWgpfK/3dsGKEu5I', 'administrador', 1),
+(2, 'jesus', 'garcia gonzalez', 'jesusemail@gmail.com', '93487629v', 666444555, 1, 'ks+8RVbHh25OVvLJmBHm4d+oF6hXyKk0cJ4QkVALQhhjjBPlxWgpfK/3dsGKEu5I', 'cliente', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `idUsuario` int NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellidos` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `dni` varchar(9) NOT NULL,
+  `telefono` int NOT NULL,
+  `notificacionEmail` tinyint(1) NOT NULL,
+  `contrasenia` varchar(250) NOT NULL,
+  `rol` varchar(50) NOT NULL,
+  `validacion` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellidos`, `email`, `dni`, `telefono`, `notificacionEmail`, `contrasenia`, `rol`, `validacion`) VALUES
 (1, 'javier', 'diaz roman', 'javier.diaz.roman.al@iespoligonosur.org', '49028792z', 637913632, 1, 'ks+8RVbHh25OVvLJmBHm4d+oF6hXyKk0cJ4QkVALQhhjjBPlxWgpfK/3dsGKEu5I', 'administrador', 1),
 (2, 'jesus', 'garcia gonzalez', 'jesusemail@gmail.com', '93487629v', 666444555, 1, 'ks+8RVbHh25OVvLJmBHm4d+oF6hXyKk0cJ4QkVALQhhjjBPlxWgpfK/3dsGKEu5I', 'cliente', 1);
 
@@ -381,13 +396,6 @@ ALTER TABLE `peticiones`
   ADD UNIQUE KEY `solicituds_email_unique` (`Email`);
 
 --
--- Indices de la tabla `prestamos`
---
-ALTER TABLE `prestamos`
-  ADD UNIQUE KEY `prestamos_isbn_unique` (`ISBN`),
-  ADD KEY `prestamos_id_index` (`Id`);
-
---
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -398,6 +406,12 @@ ALTER TABLE `users`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
@@ -444,13 +458,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -467,12 +487,6 @@ ALTER TABLE `comentario`
 --
 ALTER TABLE `libros`
   ADD CONSTRAINT `libros_editorial_foreign` FOREIGN KEY (`Editorial`) REFERENCES `editorials` (`Id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `prestamos`
---
-ALTER TABLE `prestamos`
-  ADD CONSTRAINT `prestamos_isbn_foreign` FOREIGN KEY (`ISBN`) REFERENCES `libros` (`ISBN`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -34,7 +34,7 @@
     color: black
   }
 
-  .logo{
+  .logo2{
     width: 50px;   
   }
 
@@ -232,8 +232,12 @@
 
   button:hover{
     background-color: #dde8d6 !important;
-    color: #254996 !important;
     box-shadow: none !important;    
+  }
+
+  .form-select:hover{
+    box-shadow: none !important;
+    border-color: #254996 !important;    
   }
 
   .gris:hover{

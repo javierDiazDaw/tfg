@@ -9,8 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"> </script>
     <link href= "{{asset('css/style.css') }}" rel= "stylesheet">
-    
-
 </head>
 <body>
     <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -50,7 +48,7 @@
     </nav>-->
     <header>
       <div class="d-flex align-items-center p-0">
-        <img class="logo ms-5 mt-3 mb-3"
+        <img class="logo2 ms-5 mt-3 mb-3"
         src="https://codeweek-s3.s3.amazonaws.com/event_picture/logo_iespoligonosur_aggnet_24ae5691-fd1d-439f-a6cf-38ba50a9f960.png" alt="">
         
         <!--Menu usuario-->
@@ -62,15 +60,19 @@
           </a>
         </div>
         <!--Nombre usuario-->
+        <?php
+            //echo(session()->get('usuario')->nombre);
+            ?>
+           
         <div class="dropdown me-md-5 izq">
           <a href="#" class="d-block link-dark text-decoration-none text-light letraPequeña" data-bs-toggle="dropdown"
             aria-expanded="false">
             <img src="https://cdn.icon-icons.com/icons2/1508/PNG/512/systemusers_104569.png" alt="mdo" width="32"
               height="32" class="rounded-circle me-1">
-            nombre_usuario
+              {{session()->get('usuario')->nombre}}
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="/login">Cerrar sesión</a></li>
+            <li><a class="dropdown-item" href="/">Cerrar sesión</a></li>
           </ul>
         </div>
       </div>
@@ -88,18 +90,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav w-100 flex-column">
               <li class="nav-item border-top">
-                  <a class="nav-link colorIcono gris activo2" href="/libros">
+                  <a class="nav-link colorIcono gris activo2" href="/incidencias">
                     <i class="fa-solid circulo fa-table-list ms-2 me-2 rounded-circle "></i><span class="fw-bold">Lista de incidencias</span></a>
                 </li>
-                <li class="nav-item border-top">
-                  <a class="nav-link colorIcono gris activo2" href="/libros/crear">
-                    <i class="fa-solid fa-square-plus circulo3 ms-2 me-2 rounded-circle"></i><span class="fw-bold">Creación de incidencias</span></a>
+                @auth
+                <li class="nav-item border-top">               
+                  <a class="nav-link colorIcono gris activo2" href="/incidencias/crear">
+                    <i class="fa-solid fa-square-plus circulo3 ms-2 me-2 rounded-circle"></i><span class="fw-bold">Crear incidencia</span></a>
                 </li>
+                @endauth
+                @auth
                 <li class="nav-item border-top">
-                  <a class="nav-link colorIcono gris activo2" href="/libros">
-                    <i class="fa-solid fa-user circulo3 ms-2 me-2 rounded-circle"></i><span
-                      class="fw-bold">Perfil</span></a>
+                  <a class="nav-link colorIcono gris activo2" href="/perfil/editar/{{session()->get('usuario')->idUsuario}}">
+                    <i class="fa-solid fa-user circulo3 ms-2 me-2 rounded-circle"></i><span class="fw-bold">Perfil</span></a>
                 </li>
+                @endauth
               </ul>
             </div>
           </div>

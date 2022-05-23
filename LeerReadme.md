@@ -28,17 +28,11 @@ proyecto-laravel.
 
 9. En la terminal escribimos php artisan migrate
 
-10. Nos da la opción de registrarnos y ponemos lo siguiente: 
+10. Nos da la opción de registrarnos y ponemos lo siguiente para parte de administrador: 
 
 	nombre: javier.diaz.roman.al@iespoligonosur.org
 	contraseña: developer
 	
-11. Copiamos mi proyecto y lo copiamos en el nuevo
-
-12. escribimos dentro del proyecto php artisan serve y en la url añadimos /libros de forma que el enlace sea parecido a esto: http://127.0.0.1:8002/libros
-	(sería la página de lista de incidencias). 
-
-
 
 Un saludo, Javier Díaz.
 

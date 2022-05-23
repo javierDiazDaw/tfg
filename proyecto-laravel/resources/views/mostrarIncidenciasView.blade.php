@@ -36,17 +36,17 @@
                 @endauth
             </tr>
         <thead class="verde">
-        <?php foreach ($libros as $libro): ?>   
+        <?php foreach ($incidencias as $incidencia): ?>   
             <tr class="bordeTabla">
-                <td><?php echo $libro['titulo']?></td>
-                <td><?php echo $libro['descripcion']?></td>
-                <td><?php echo $libro['aula']?></td>
-                <td><?php echo $libro['fechaCreacion']?></td>
-                <td><?php echo $libro['fechaModificacion']?></td>
-                <td><?php echo $libro['fechaCierre']?></td>
-                <td><?php echo $libro['estado']?></td>               
+                <td><?php echo $incidencia['titulo']?></td>
+                <td><?php echo $incidencia['descripcion']?></td>
+                <td><?php echo $incidencia['aula']?></td>
+                <td><?php echo $incidencia['fechaCreacion']?></td>
+                <td><?php echo $incidencia['fechaModificacion']?></td>
+                <td><?php echo $incidencia['fechaCierre']?></td>
+                <td><?php echo $incidencia['estado']?></td>               
                 @auth 
-                <td><?php echo "<a href=/libros/editar/$libro[ISBN]>Editar</a>"?></td>
+                <td><?php echo "<a href=/incidencias/editar/$incidencia[idIncidencia]>Editar</a>"?></td>
                 @endauth            
             </tr>
         <?php endforeach; ?>

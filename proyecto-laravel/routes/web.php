@@ -5,6 +5,7 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\UsuarioController;
 
 
 /*
@@ -28,11 +29,20 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/libros', [IncidenciaController::class, 'index']);
+Route::get('/incidencias', [IncidenciaController::class, 'index']);
 
-Route::get('/libros/crear', [IncidenciaController::class, 'create'])->middleware(['auth']);
+Route::get('/incidencias/crear', [IncidenciaController::class, 'create'])->middleware(['auth']);
 
-Route::post('/libros/crear', [IncidenciaController::class, 'store'])->middleware(['auth']);
+Route::post('/incidencias/crear', [IncidenciaController::class, 'store'])->middleware(['auth']);
+
+
+Route::get('/perfil', [UsuarioController::class, 'index']);
+
+Route::get('/perfil/ver/{idUsuario}', [UsuarioController::class, 'show'])->middleware(['auth']);
+
+Route::get('/perfil/editar/{idUsuario}', [UsuarioController::class, 'edit'])->middleware(['auth']);
+
+Route::post('/perfil/editar/{idUsuario}', [UsuarioController::class, 'update'])->middleware(['auth']);
 
 
 
